@@ -1,0 +1,77 @@
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.custom-navbar{
+    background-color: #6dc56a;
+    height: 150px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#login-logout-buttons{
+
+}
+
+#welcome-title,
+#welcome-subhead {
+    text-align: center;
+    animation: slideUp 1s ease-in-out;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(63, 63, 63);
+}
+
+#welcome-title {
+    font-size: 65px;
+    margin-top: 30px;
+}
+
+#welcome-subhead {
+    font-size: 35px;
+}
+
+.class-examples .card {
+    opacity: 0.55;
+    transition: opacity 0.3s ease;
+}
+
+.class-examples .card:hover {
+    opacity: 1;
+}
+
+#welcome-title,
+#welcome-subhead,
+.class-examples {
+    animation: slideUp 1s ease-in-out;
+}
+
+.class-examples{
+    margin: 50px;
+}
+
+.card{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn.btn-primary {
+    background-color: #6dc56a;
+    border-color: #6dc56a;
+}
+
+.btn.btn-primary:active {
+    background-color: #4d8e48;
+    border-color: #4d8e48;
+}
+
