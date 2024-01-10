@@ -9,17 +9,90 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/themes/light.css" />
         <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/shoelace-autoloader.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap">
+        <script src="{% static 'Bridge/layoutScript.js' %}"></script>
         {% block script %}
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg custom-navbar" id="custom-navbar">
-            <div class="container-fluid">
-                <img src="{% static 'Bridge/classroombridge-logo.png' %}" alt="ClassroomBridge Logo" style="max-height: 190px; max-width: 230px;">
-                <div class="login-logout-buttons"></div>
+        <div id="to-blur">
+            <nav class="navbar navbar-expand-lg custom-navbar" id="custom-navbar">
+                <div class="container-fluid">
+                    <a href="{% url 'index' %}">
+                        <img src="{% static 'Bridge/classroombridge-logo.png' %}" alt="ClassroomBridge Logo" style="max-height: 190px; max-width: 230px;">
+                    </a>
+                        <div class="login-logout-buttons">
+                        <div class="login-and-register">
+                            <button type="button" class="btn btn-light" style="width: 100px; margin: 10px;" onclick="showLoginForm()">Login</button>
+                            <button type="button" class="btn btn-light" style="width: 100px; margin: 10px;" onclick="showRegisterForm()">Register</button>
+                        </div>
+                        <div class="logout">
+                            <button type="button" class="btn btn-light" style="width: 100px; margin: 10px;" action="{% url 'logout' %}">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            {% block body %}
+            {% endblock %}
+        </div>
+
+        <div class="overlay" id="overlay">
+            <div class="login-register-form" id="loginForm">
+                <div class="login-register-container">
+                    <h2 id="login-register-head">Login</h2>
+                    <form id="loginForm" action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" onClick="goBack()">Back</button>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Login</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </nav>
-        {% block body %}
-        {% endblock %}
+    
+            <div class="login-register-form" id="registerForm">
+                <div class="login-register-container">
+                    <h2 id="login-register-head">Register</h2>
+                    <form id="registerForm" action="{% url 'register' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="first-name">First Name:</label>
+                            <input type="text" id="first-name" name="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name:</label>
+                            <input type="text" id="last-name" name="last-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password-confirmation">Confirm Password:</label>
+                            <input type="password" id="password" name="password-confirmation" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" onClick="goBack()">Back</button>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
