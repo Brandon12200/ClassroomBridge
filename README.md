@@ -1,4 +1,4 @@
-## Table of Contents
+ ## Table of Contents
 1. [Introduction](#introduction)
 2. [Sample](#sample)
 3. [Dependencies](#dependencies)
@@ -21,7 +21,7 @@ This Django app provides functionalities for managing courses, modules, and stud
 
 ## Sample
 
-![ClassroomBridge Example](Bridge-Example1.png)
+![ClassroomBridge Example](ClassroomBridge/ClassroomBridge-Example1.png)
 ---
 
 ## Dependencies
