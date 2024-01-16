@@ -49,11 +49,11 @@
     animation: slideUp 1s ease-in-out;
 }
 
-.class-examples{
+.class-examples {
     margin: 50px;
 }
 
-.card{
+.card {
     border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
@@ -66,11 +66,11 @@
     border-color: #6dc56a;
 }
 
+.btn.btn-primary:active,
 .btn.btn-primary:active {
-    background-color: #4d8e48;
-    border-color: #4d8e48;
+    background-color: #4d8e48 !important;
+    border-color: #4d8e48 !important;
 }
-
 .overlay {
     display: none;
     position: fixed;
@@ -84,7 +84,8 @@
     z-index: 999;
 }
 
-.login-register-form {
+.login-register-form,
+.new-class-form {
     background: rgb(255, 255, 255);
     padding: 20px;
     border-radius: 10px;
@@ -92,7 +93,7 @@
     width: 30%;
 }
 
-.to-blur{
+.to-blur {
     filter: blur(0);
 }
 
@@ -113,7 +114,7 @@
 .form-group input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;  /* Add a solid border */
+    border: 1px solid #ddd; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
@@ -142,7 +143,8 @@
     color: #6dc56a;
 }
 
-#login-register-head{
+#login-register-head,
+#new-class-form-head {
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -195,3 +197,130 @@ input:checked + .slider:before {
     display: flex; 
     justify-content: center;
 }
+
+#index-button{
+    animation: slideUp 1s ease-in-out;
+}
+
+#index-alert {
+    text-align: center;
+    width: 50%;
+    margin: 16px auto;  
+    box-sizing: content-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideUp 1s ease-in-out;
+}
+
+.classes-add-button {
+    margin-left: auto;
+}
+
+.classes-header {
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+    margin: 0 auto;
+    padding: 10px;
+    margin-top: 2%;
+}
+
+.no-class-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    display: block;
+    margin: 15px auto;
+
+}
+
+.new-class-form {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 50%;
+}
+
+#new-class-form-head {
+
+}
+
+.class-form-container,
+.student-form-container {
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.classes-header {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.no-class-text {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+aside {
+    background-color: #6dc56a;
+    border-radius: 8px;
+}
+
+.class-cards {
+    margin: 50px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 137px;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    background-color: #6dc56a;
+    overflow-y: auto;
+    border-radius: 8px;
+    z-index: 1000;
+  }
+  
+  .sidebar-sticky {
+    padding-top: 20px;
+  }
+  
+  .nav-link.active {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 8px;
+  }
+
+  .new-mod-form {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .class-navbar {
+    color: #ffffff;
+    margin-left: auto;
+  }
+
+  .new-student-form {
+    background: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+  }
+
+  .student-form-container {
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    padding: 20px;
+    text-align: center;;
+
+  }
+
+  .add-student-button {
+
+  }

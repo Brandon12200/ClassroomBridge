@@ -1,0 +1,49 @@
+{% extends 'Bridge/layout.html' %}
+{% load static %}
+
+{% block body %}
+{% if message %}
+    <div id="index-alert" class="alert alert-warning" role="alert">
+        {{ message }}
+    </div>
+{% endif %}
+<div class="container-fluid">
+    <nav class="col-md-2 d-none d-md-block sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                {% if user.is_authenticated and course.teacher == user %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'add_module' course.id %}" style="text-align: center;">
+                            Add Module
+                        </a>
+                    </li>
+                {% endif %} 
+                {% if modules %}
+                    {% for module in modules %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'view_module' module.id course.id %}" style="text-align: center;">
+                                {{ module.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endif %} 
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="col-md-10 ml-sm-auto">
+        <nav class="navbar navbar-light bg-white class-navbar">
+            {% if user.is_authenticated and course.teacher == user %}
+                <div class="container">
+                    <span class="navbar-text">
+                    </span>
+                    <div class="btn-group ms-auto" role="group" aria-label="Navbar buttons">
+                        <a class="btn btn-primary add-student-button" href="{% url 'student_form' course.id %}">Add Student</a>
+                    </div>
+                </div>
+            {% endif %}
+        </nav>
+    </main>
+</div>
+
+{% endblock %}  

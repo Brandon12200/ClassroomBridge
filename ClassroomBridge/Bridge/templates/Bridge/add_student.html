@@ -1,0 +1,29 @@
+{% extends 'Bridge/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="classes-header">
+    <h2 class="classes-heading" style="display: inline-block; font-family: 'Ubuntu', sans-serif;">{{ class.class_name }} - Add Student</h2>
+    <a class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" href="{% url 'view_class' class.id %}">Back</a>
+</div>
+<div class="new-student-form" id="studentForm">
+    <div class="student-form-container">
+        <form id="newClassForm" action="{% url 'add_student' course.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="student_username">Student Username:</label>
+                <input type="text" id="student_username" name="student_username" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" onClick="goBackStudent()">Back</button>
+            </div>
+            <div class="form-group">
+                <button type="submit">Add Student</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}  
