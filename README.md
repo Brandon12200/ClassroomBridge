@@ -21,7 +21,7 @@ This Django app provides functionalities for managing courses, modules, and stud
 
 ## Sample
 
-![ClassroomBridge Example](ClassroomBridge/ClassroomBridge-Example1.png)
+![ClassroomBridge Example](ClassroomBridge/Bridge-Example1.png)
 ---
 
 ## Dependencies
