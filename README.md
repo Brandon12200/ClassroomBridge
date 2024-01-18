@@ -1,8 +1,13 @@
  ## Table of Contents
 1. [Introduction](#introduction)
-2. [Sample](#sample)
-3. [Dependencies](#dependencies)
-4. [Views](#views)
+2. [Key Features](#key-features)
+    1. [Course Management](#course-management)
+    2. [Module Creation](#module-creation)
+    3. [Student Management](#student-management)
+    4. [User Authentication](#user-authentication)
+3. [Sample](#sample)
+4. [Dependencies](#dependencies)
+5. [Views](#views)
     1. [Index View](#index-view)
     2. [Classes View](#classes-view)
     3. [Register View](#register-view)
@@ -17,7 +22,21 @@
     12. [Student Form View](#student-form-view)
 
 ## Introduction
-This Django app provides functionalities for managing courses, modules, and students. It includes views for user authentication, creating classes, adding modules, and managing students within a class.
+Welcome to ClassroomBridge, a comprehensive Learning Management System (LMS) meticulously crafted for K-12 classrooms. This Django-powered app is a dynamic platform that empowers educators, students, and administrators by seamlessly integrating essential features to enhance the teaching and learning experience.
+
+## Key Features
+
+### Course Management
+ClassroomBridge simplifies the organization of courses, allowing teachers to create, customize, and manage their class offerings. From academic subjects to extracurricular activities, this LMS provides a centralized hub for all educational endeavors.
+
+### Module Creation
+Enrich your curriculum with detailed modules. ClassroomBridge supports the creation of content-rich modules, providing educators with a versatile tool to structure lessons, share resources, and engage students effectively.
+
+### Student Management
+Effortlessly manage student enrollment and participation within classes. Teachers can keep track of student progress, assess performance, and foster a collaborative learning environment.
+
+### User Authentication
+Ensuring a secure and personalized experience, ClassroomBridge incorporates robust user authentication mechanisms. Teachers, students, and administrators can access designated views based on their roles, safeguarding sensitive information.
 
 ## Sample
 
