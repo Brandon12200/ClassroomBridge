@@ -13,14 +13,14 @@
         {% block script %}
         {% endblock %}
     </head>
-    <body>
+    <body class="pt-5">
         <div id="to-blur">
-            <nav class="navbar navbar-expand-lg custom-navbar" id="custom-navbar">
+            <nav class="navbar navbar-expand-lg custom-navbar fixed-top" id="custom-navbar">
                 <div class="container-fluid">
                     <a href="{% url 'index' %}">
                         <img src="{% static 'Bridge/classroombridge-logo.png' %}" alt="ClassroomBridge Logo" style="max-height: 190px; max-width: 230px;">
                     </a>
-                        <div class="login-logout-buttons">
+                    <div class="login-logout-buttons">
                         <div class="login-and-register">
                             <button type="button" class="btn btn-light" style="width: 100px; margin: 10px;" onclick="showLoginForm()">Login</button>
                             <button type="button" class="btn btn-light" style="width: 100px; margin: 10px;" onclick="showRegisterForm()">Register</button>
@@ -34,8 +34,10 @@
                     </div>
                 </div>
             </nav>
-            {% block body %}
-            {% endblock %}
+            <div style="padding-top: 80px; margin-right: -20px;"></div>
+                {% block body %}
+                {% endblock %}
+            </div>
         </div>
 
         <div class="overlay" id="overlay">

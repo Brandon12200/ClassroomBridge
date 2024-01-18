@@ -1,0 +1,23 @@
+{% extends 'Bridge/layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class="classes-header">
+    <h2 class="classes-heading" style="display: inline-block; font-family: 'Ubuntu', sans-serif;">{{ course.class_name }} - Edit Homepage</h2>
+    <a class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" href="{% url 'view_class' course.id %}">Back</a>
+</div>
+
+<div class="new-mod-form">
+    <form method="post" action="{% url 'edit_class_homepage' course.id %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="content">Homepage Content:</label>
+            <textarea class="form-control" name="home-content" rows="13">{{ course.home_content }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

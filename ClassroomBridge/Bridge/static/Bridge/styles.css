@@ -161,6 +161,11 @@
     height: 0;
 }
 
+.teacher-add-module{
+    background-color: #cfd9cf !important;
+    border: #000000;
+}
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -262,11 +267,6 @@ input:checked + .slider:before {
     font-family: 'Ubuntu', sans-serif;
 }
 
-aside {
-    background-color: #6dc56a;
-    border-radius: 8px;
-}
-
 .class-cards {
     margin: 50px;
 }
@@ -321,6 +321,32 @@ aside {
 
   }
 
+  .add-student-button,
+  .edit-home-button {
+    display: flex; 
+    justify-content: flex-end;
+  }
+
+  .add-student-container {
+    height: 150px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  #inner-navbar {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 10px;
+  }
+
   .add-student-button {
 
   }
+
+  #class-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#class-buttons a {
+    margin-right: 5px; /* Adjust the margin-right value for spacing */
+}
