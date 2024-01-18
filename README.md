@@ -22,7 +22,7 @@
     12. [Student Form View](#student-form-view)
 
 ## Introduction
-Welcome to ClassroomBridge, a comprehensive Learning Management System (LMS) meticulously crafted for K-12 classrooms. This Django-powered app is a dynamic platform that empowers educators, students, and administrators by seamlessly integrating essential features to enhance the teaching and learning experience.
+Welcome to ClassroomBridge, a comprehensive Learning Management System (LMS) crafted for K-12 classrooms. This Django-powered app is a dynamic platform that empowers educators, students, and administrators by seamlessly integrating essential features to enhance the teaching and learning experience.
 
 ## Key Features
 
