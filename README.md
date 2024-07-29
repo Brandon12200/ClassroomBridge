@@ -1,42 +1,53 @@
- ## Table of Contents
+## Table of Contents
+# ClassroomBridge: A Comprehensive Learning Management System
+
+## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Key Features](#key-features)
-    1. [Course Management](#course-management)
-    2. [Module Creation](#module-creation)
-    3. [Student Management](#student-management)
-    4. [User Authentication](#user-authentication)
+   - [Course Management](#course-management)
+   - [Module Creation](#module-creation)
+   - [Student Management](#student-management)
+   - [User Authentication](#user-authentication)
 3. [Sample](#sample)
-4. [Dependencies](#dependencies)
-5. [Views](#views)
-    1. [Index View](#index-view)
-    2. [Classes View](#classes-view)
-    3. [Register View](#register-view)
-    4. [Login View](#login-view)
-    5. [Logout View](#logout-view)
-    6. [Check Login Status View](#check-login-status-view)
-    7. [New Class View](#new-class-view)
-    8. [View Class View](#view-class-view)
-    9. [View Module View](#view-module-view)
-    10. [Add Module View](#add-module-view)
-    11. [Add Student View](#add-student-view)
-    12. [Student Form View](#student-form-view)
+4. [Getting Started](#getting-started)
+   - [Dependencies](#dependencies)
+   - [Installation](#installation)
+5. [Usage](#usage)
+   - [For Teachers](#for-teachers)
+   - [For Students](#for-students)
+6. [System Architecture](#system-architecture)
+   - [Models](#models)
+   - [Views](#views)
+   - [Templates](#templates)
+7. [API Documentation](#api-documentation)
+   - [Check Login Status](#check-login-status)
 
 ## Introduction
+
 Welcome to ClassroomBridge, a comprehensive Learning Management System (LMS) crafted for K-12 classrooms. This Django-powered app is a dynamic platform that empowers educators, students, and administrators by seamlessly integrating essential features to enhance the teaching and learning experience.
 
 ## Key Features
 
 ### Course Management
-ClassroomBridge simplifies the organization of courses, allowing teachers to create, customize, and manage their class offerings. From academic subjects to extracurricular activities, this LMS provides a centralized hub for all educational endeavors.
+- Create and customize classes
+- Organize academic subjects and extracurricular activities
+- Centralized hub for all educational content
 
 ### Module Creation
-Enrich your curriculum with detailed modules. ClassroomBridge supports the creation of content-rich modules, providing educators with a versatile tool to structure lessons, share resources, and engage students effectively.
+- Design content-rich modules with markdown support
+- Structure lessons effectively
+- Share resources with students
 
 ### Student Management
-Effortlessly manage student enrollment and participation within classes. Teachers can keep track of student progress, assess performance, and foster a collaborative learning environment.
+- Manage student enrollment with invitation system
+- Track student progress
+- Foster collaborative learning environments
 
 ### User Authentication
-Ensuring a secure and personalized experience, ClassroomBridge incorporates robust user authentication mechanisms. Teachers, students, and administrators can access designated views based on their roles, safeguarding sensitive information.
+- Secure login system with email verification
+- Role-based access control (Teacher, Student, Administrator)
+- Password reset functionality
 
 ## Sample
 
@@ -44,44 +55,100 @@ Ensuring a secure and personalized experience, ClassroomBridge incorporates robu
 ![ClassroomBridge Example](ClassroomBridge/Ms._Smith_Home.png)
 ---
 
-## Dependencies
-- Django
-- Markdown2
+## Getting Started
 
-## Views
+### Dependencies
+- Python 3.8+
+- Django 3.2+
+- Markdown2 2.4+
 
-### Index View
-The `index` view renders the main landing page.
+### Installation
 
-### Classes View
-The `classes` view displays the classes associated with the logged-in user.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/classroombridge.git
+   ```
 
-### Register View
-The `register_view` handles user registration. It checks for matching passwords and ensures the uniqueness of email addresses.
+2. Navigate to the project directory:
+   ```bash
+   cd classroombridge
+   ```
 
-### Login View
-The `login_view` handles user login. It authenticates the user and redirects to the classes page upon successful login.
+3. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Logout View
-The `logout_view` logs out the current user and redirects to the index page.
+4. Set up the database:
+   ```bash
+   python manage.py migrate
+   ```
 
-### Check Login Status View
-The `check_login_status` view returns a JSON response indicating whether the user is authenticated.
+5. Create a superuser:
+   ```bash
+   python manage.py createsuperuser
+   ```
 
-### New Class View
-The `new_class` view handles the creation of a new class. It validates input and redirects to the classes page.
+6. Start the development server:
+   ```bash
+   python manage.py runserver
+   ```
 
-### View Class View
-The `view_class` view displays details about a specific class, including its modules.
+## Usage
 
-### View Module View
-The `view_module` view displays details about a specific module within a class, converting markdown content to HTML for better rendering.
+### For Teachers
 
-### Add Module View
-The `add_module` view allows the addition of a new module to a class.
+1. Register for an account or log in
+2. Create a new class by clicking "New Class"
+3. Add modules to your class using the "Add Module" feature
+4. Invite students to join your class using the "Add Student" function
 
-### Add Student View
-The `add_student` view allows the addition of a new student to a class.
+### For Students
 
-### Student Form View
-The `student_form` view renders a form for adding a new student to a class.
+1. Register for an account or log in
+2. Access course materials and complete assignments through the module view
+
+## System Architecture
+
+ClassroomBridge is built using the Django web framework, following the Model-View-Template (MVT) architectural pattern. Here's an overview of the main components:
+
+### Models
+- `User`: Extended Django User model
+- `Class`: Represents a course or class
+- `Module`: Represents a lesson or unit within a class
+
+### Views
+
+ClassroomBridge implements the following key views:
+
+1. **Index View**: Renders the main landing page.
+2. **Classes View**: Displays classes associated with the logged-in user.
+3. **Register View**: Handles user registration with email validation.
+4. **Login View**: Authenticates users and manages sessions.
+5. **Logout View**: Ends user sessions securely.
+6. **New Class View**: Facilitates the creation of new classes.
+7. **View Class View**: Shows details of a specific class and its modules.
+8. **View Module View**: Presents module content with markdown rendering.
+9. **Add Module View**: Allows teachers to create new modules.
+10. **Add Student View**: Manages the process of adding students to a class.
+11. **Student Form View**: Renders the form for student enrollment.
+
+### Templates
+
+The application uses Django's template engine to render HTML dynamically. Key templates include:
+
+- `index.html`: The landing page
+- `classes.html`: Overview of user's classes
+- `class.html`: Detailed view of a specific class
+- `module.html`: Display for individual modules
+
+## API Documentation
+
+ClassroomBridge provides a simple API for checking login status:
+
+### Check Login Status
+- **URL**: `/check_login_status`
+- **Method**: GET
+- **Success Response**: 
+  - Code: 200
+  - Content: `{ "isLoggedIn": true }` or `{ "isLoggedIn": false }`
