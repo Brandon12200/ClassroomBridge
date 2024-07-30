@@ -390,7 +390,6 @@ Common Issues and Solutions:
 1. **Login Problems**
    - Ensure you're using the correct username (not email).
    - Use the registration form if you don't have an account.
-   - Contact an administrator if you're unable to log in.
 
 2. **Content Not Displaying**
    - Refresh the page.
@@ -409,14 +408,12 @@ Common Issues and Solutions:
 
 5. **Slow Page Loading**
    - Check your internet connection.
-   - If the issue persists, it may be due to large class sizes or complex module content. Consider optimizing your content or contacting the system administrator for assistance.
+   - If the issue persists, it may be due to large class sizes or complex module content. Consider optimizing your content.
 
 6. **Browser Compatibility Issues**
    - Ensure you're using a supported, up-to-date web browser.
    - Clear your browser cache and cookies.
    - Try accessing the platform in an incognito/private browsing window.
-
-If you encounter persistent issues not covered here, please contact the ClassroomBridge support team for further assistance.
 
 ## 12. Performance Considerations
 
