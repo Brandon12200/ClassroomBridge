@@ -1,4 +1,4 @@
-# ClassroomBridge: Comprehensive Technical Documentation
+# ClassroomBridge: Comprehensive Learning Management System
 
 ## Table of Contents
 
