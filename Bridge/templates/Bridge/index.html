@@ -1,0 +1,147 @@
+
+{% extends 'Bridge/layout.html' %}
+{% load static %}
+
+{% block title %}Home - ClassroomBridge{% endblock %}
+
+{% block body %}
+{% if message %}
+    <div id="index-alert" class="alert alert-warning" role="alert">
+        {{ message }}
+    </div>
+{% endif %}
+<div id="welcome-title">
+    <p>ClassroomBridge</p>
+</div>
+<div id="welcome-subhead">
+    <p>Empowering Education, Enabling Excellence</p>
+</div>
+<div id="view-classes-button" data-login-url="{% url 'classes' %}">
+    <a id="index-button" class="btn btn-primary" onclick="isLoggedIn()">View Classes</a>
+</div>
+<div class="class-examples">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/books.jpg.webp' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Miss Garcia's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 206
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/classroom.jpg.avif' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Mr. Wilson's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 309
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/Strong-brain.png' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Mrs. Johnson's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 405
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/flowers.jpg' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Ms. Smith's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 101
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/learning-vs-training.webp' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Dr. Brown's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 403
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/dogs.jpg' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Mr. Jackson's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 208
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/soccer.jpg' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Mrs. Davis's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 302
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/math.jpg' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Mr. Anderson's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 106
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top card-img-height" src="{% static 'Bridge/students.jpg' %}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Ms. Martinez's Class, 2023-2024</h5>
+                    <p class="card-text">
+                        Room 204
+                    </p>
+                    <a class="btn btn-primary">View Class</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

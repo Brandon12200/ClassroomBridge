@@ -1,0 +1,44 @@
+{% extends 'Bridge/layout.html' %}
+{% load static %}
+
+{% block title %}Classes - ClassroomBridge{% endblock %}
+
+{% block body %}
+{% if message %}
+    <div id="index-alert" class="alert alert-warning" role="alert">
+        {{ message }}
+    </div>
+{% endif %}
+<div class="classes-header">
+    <h2 class="classes-heading" style="display: inline-block;">Your Classes</h2>
+    <button type="button" class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" onclick="showNewClassForm()">Add Class</button>
+</div>
+<div class="class-cards">
+    <div class="row">
+        {% if classes %}
+            {% for class in classes %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if class.class_picture %}
+                        <img class="card-img-top card-img-height" src="{{ class.class_picture }}" alt="{{ class.class_name }}" style="height: 300px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ class.class_name }}</h5>
+                            <p class="card-text">{{ class.location }}</p>
+                            <a href="{% url 'view_class' class.id %}" class="btn btn-primary">View Class</a>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="no-class-text">
+                <h3 style="margin: 15px;">No Classes Yet!</h3>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

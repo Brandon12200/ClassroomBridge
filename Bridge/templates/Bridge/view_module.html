@@ -1,0 +1,21 @@
+{% extends 'Bridge/layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class="classes-header">
+    <h2 class="classes-heading" style="display: inline-block; font-family: 'Ubuntu', sans-serif;">{{ class.class_name }} - {{ title }}</h2>
+    <a class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" href="{% url 'view_class' class.id %}">Back</a>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>{{ title }}</h2>
+            <p>{{ description|safe }}</p>
+            <hr>
+            <div>{{ content|safe }}</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

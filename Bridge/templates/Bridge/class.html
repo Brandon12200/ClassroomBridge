@@ -1,0 +1,58 @@
+{% extends 'Bridge/layout.html' %}
+{% load static %}
+
+{% block body %}
+{% if message %}
+    <div id="index-alert" class="alert alert-warning" role="alert">
+        {{ message }}
+    </div>
+{% endif %}
+<div class="container-fluid">
+    <nav class="col-md-2 fixed-top vh-100 sidebar">
+        <div class="sidebar-sticky overflow-y-auto">
+            <ul class="nav flex-column">
+                {% if user.is_authenticated and course.teacher == user %}
+                    <li class="nav-item">
+                        <a class="nav-link active teacher-add-module" href="{% url 'add_module' course.id %}" style="text-align: center;">
+                            Add Module
+                        </a>
+                    </li>
+                {% endif %} 
+                {% if modules %}
+                    {% for module in modules %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'view_module' module.id course.id %}" style="text-align: center; margin-top: 11px;">
+                                {{ module.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endif %} 
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="col-md-10 ml-sm-auto">
+        {% if user.is_authenticated and course.teacher == user %}
+        <nav class="navbar navbar-expand-lg" style="margin-top: 34px; margin-left: -20px;" id="inner-navbar">
+            <div class="view-class-head">
+                <h2 style="font-family: 'Ubuntu', sans-serif;">{{ course.class_name }}</h2>
+            </div>
+            <div id="class-buttons" class="ml-auto">
+                <a class="btn btn-primary classes-add-button" href="{% url 'student_form' course.id %}">Add Student</a>
+                <a class="btn btn-primary home-edit-button" href="{% url 'edit_class_homepage' course.id %}">Edit Homepage</a>
+            </div>
+        </nav>
+        {% else %}
+        <nav class="navbar navbar-expand-lg" style="margin-top: 34px;" id="inner-navbar">
+            <div class="view-class-head">
+                <h2 style="font-family: 'Ubuntu', sans-serif; margin-right: 20px;">{{ course.class_name }}</h2>
+            </div>
+        </nav>
+        {% endif %}
+        {% if content %}
+            {{ content|safe }}
+        {% endif %}
+    </main>
+</div>
+
+{% endblock %}  

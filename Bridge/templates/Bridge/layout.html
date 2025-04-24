@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}ClassroomBridge{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'Bridge/styles.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/themes/light.css" />
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/shoelace-autoloader.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap">
+        <script src="{% static 'Bridge/layoutScript.js' %}"></script>
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body class="pt-5">
+        <div id="to-blur">
+            <nav class="navbar navbar-expand-lg custom-navbar fixed-top" id="custom-navbar">
+                <div class="container-fluid">
+                    <a href="{% url 'index' %}">
+                        <img src="{% static 'Bridge/classroombridge-logo.png' %}" alt="ClassroomBridge Logo" style="max-height: 190px; max-width: 230px;">
+                    </a>
+                    <div class="login-logout-buttons">
+                        <div class="login-and-register">
+                            <button type="button" class="btn btn-light" style="width: 100px; margin: 10px;" onclick="showLoginForm()">Login</button>
+                            <button type="button" class="btn btn-light" style="width: 100px; margin: 10px;" onclick="showRegisterForm()">Register</button>
+                        </div>
+                        <div class="logout">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-light" style="width: 100px; margin: 10px;">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div style="padding-top: 80px; margin-right: -20px;"></div>
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="overlay" id="overlay">
+            <div class="login-register-form" id="loginForm">
+                <div class="login-register-container">
+                    <h2 id="login-register-head">Login</h2>
+                    <form id="loginForm" action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" onClick="goBack()">Back</button>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    
+            <div class="login-register-form" id="registerForm">
+                <div class="login-register-container">
+                    <h2 id="login-register-head">Register</h2>
+                    <form id="registerForm" action="{% url 'register' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password-confirmation">Confirm Password:</label>
+                            <input type="password" id="password" name="password-confirmation" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" onClick="goBack()">Back</button>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="new-class-form" id="classForm">
+                <div class="class-form-container">
+                    <h2 id="new-class-form-head">Create New Class</h2>
+                    <form id="newClassForm" action="{% url 'new_class' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="class_name">Class name:</label>
+                            <input type="text" id="class_name" name="class_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location:</label>
+                            <input type="text" id="location" name="location" required>
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <label for="backgroundImage">Background Image URL:</label>
+                            <input type="url" id="backgroundImage" name="backgroundImage">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Create Class</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
