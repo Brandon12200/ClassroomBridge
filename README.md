@@ -69,8 +69,8 @@ ClassroomBridge is built on a Model-View-Template (MVT) architecture, leveraging
 
 ## 3. Sample
 
-![ClassroomBridge Example](ClassroomBridge/Bridge-Example1.png)
-![ClassroomBridge Example](ClassroomBridge/Ms._Smith_Home.png)
+![ClassroomBridge Example](Bridge-Example1.png)
+![ClassroomBridge Example](Ms._Smith_Home.png)
 
 ## 4. Getting Started
 
