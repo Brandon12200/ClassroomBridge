@@ -2,8 +2,8 @@
 
 A comprehensive Learning Management System built with Django that streamlines online education delivery for both educators and students.
 
-![ClassroomBridge Example](Bridge-Example1.png)
-![Class Home Example](Ms._Smith_Home.png)
+![ClassroomBridge Example](Bridge-Example2.png)
+![Class Home Example](Ms._Smith_Home2.png)
 
 ## Features
 
