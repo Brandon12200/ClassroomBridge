@@ -10,34 +10,38 @@
     </div>
 {% endif %}
 <div class="classes-header">
-    <h2 class="classes-heading" style="display: inline-block;">Your Classes</h2>
-    <button type="button" class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" onclick="showNewClassForm()">Add Class</button>
+    <div class="classes-header-content">
+        <h2 class="classes-heading" style="display: inline-block;">Your Classes</h2>
+        <button type="button" class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" onclick="showNewClassForm()">Add Class</button>
+    </div>
 </div>
-<div class="class-cards">
-    <div class="row">
-        {% if classes %}
-            {% for class in classes %}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        {% if class.class_picture %}
-                        <img class="card-img-top card-img-height" src="{{ class.class_picture }}" alt="{{ class.class_name }}" style="height: 300px; object-fit: cover;">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ class.class_name }}</h5>
-                            <p class="card-text">{{ class.location }}</p>
-                            <a href="{% url 'view_class' class.id %}" class="btn btn-primary">View Class</a>
+<div class="container" style="display: flex; justify-content: center; margin-bottom: 40px;">
+    <div style="width: 90%; max-width: 1200px;">
+        <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            {% if classes %}
+                {% for class in classes %}
+                    <div class="col-md-4" style="min-width: 300px; max-width: 350px; margin-bottom: 20px;">
+                        <div class="card">
+                            {% if class.class_picture %}
+                            <img class="card-img-top card-img-height" src="{{ class.class_picture.url }}" alt="{{ class.class_name }}" style="object-fit: cover; height: 200px;">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ class.class_name }}</h5>
+                                <p class="card-text">{{ class.location }}</p>
+                                <div class="class-card-action">
+                                    <a href="{% url 'view_class' class.id %}" class="btn btn-primary">View Class</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-info" style="width: 100%; text-align: center;">
+                    <h3>No Classes Yet!</h3>
+                    <p>Click "Add Class" to create your first class.</p>
                 </div>
-                {% if forloop.counter|divisibleby:3 and not forloop.last %}
-                    </div><div class="row">
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            <div class="no-class-text">
-                <h3 style="margin: 15px;">No Classes Yet!</h3>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
 </div>
 

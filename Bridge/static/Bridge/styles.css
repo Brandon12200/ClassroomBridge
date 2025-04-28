@@ -1,76 +1,206 @@
+/* Updated CSS for ClassroomBridge */
 
-@keyframes slideUp {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+:root {
+    --primary-color: #4CAF50;
+    --primary-dark: #388e3c;
+    --primary-light: #81c784;
+    --primary-very-light: #e8f5e9;
+    --secondary-color: #4CAF50;
+    --secondary-light: #66bb6a;
+    --accent-color: #c8e6c9;
+    --dark-text: #1b5e20;
+    --light-text: #f1f8e9;
+    --border-radius: 8px;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
 }
 
-.custom-navbar{
-    background-color: #6dc56a;
-    height: 150px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+body {
+    color: var(--dark-text);
+    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--primary-very-light);
+    margin: 0;
+    padding: 0;
+    padding-top: 60px; /* Account for fixed navbar */
 }
 
+/* Navbar styling */
+.custom-navbar {
+    background-color: var(--primary-color);
+    height: 60px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: bold;
+    font-size: 24px !important;
+    text-decoration: none;
+}
+
+.login-logout-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.login-logout-buttons .btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    width: 90px !important;
+    margin: 5px !important;
+}
+
+.login-logout-buttons .btn:hover {
+    background-color: var(--light-text);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Welcome section */
 #welcome-title,
 #welcome-subhead {
     text-align: center;
-    animation: slideUp 1s ease-in-out;
     font-family: 'Ubuntu', sans-serif;
-    color: rgb(63, 63, 63);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    color: var(--dark-text); 
 }
 
 #welcome-title {
-    font-size: 65px;
+    font-size: 42px;
     margin-top: 30px;
+    margin-bottom: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 #welcome-subhead {
-    font-size: 35px;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
 }
 
-.class-examples .card {
-    opacity: 0.55;
-    transition: opacity 0.3s ease;
+/* View Classes button */
+#view-classes-button {
+    display: flex; 
+    justify-content: center;
+    margin: 30px 0;
 }
 
-.class-examples .card:hover {
-    opacity: 1;
+#view-classes-button .btn,
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    text-decoration: none;
 }
 
-#welcome-title,
-#welcome-subhead,
-.class-examples {
-    animation: slideUp 1s ease-in-out;
-}
-
-.class-examples {
-    margin: 50px;
-}
-
-.card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
+#view-classes-button .btn:hover,
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn.btn-primary {
-    background-color: #6dc56a;
-    border-color: #6dc56a;
+/* Class cards container */
+.class-examples {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px auto;
+    max-width: 1400px;
+    padding: 0 20px;
 }
 
-.btn.btn-primary:active,
-.btn.btn-primary:active {
-    background-color: #4d8e48 !important;
-    border-color: #4d8e48 !important;
+/* Card styling */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all var(--transition-speed) ease;
+    background-color: #ffffff;
+    border-top: 2px solid var(--primary-color);
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
 }
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.card-img-top {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed) ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.02);
+}
+
+.card-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--dark-text);
+    border-bottom: 1px solid var(--primary-very-light);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.card-text {
+    color: #6c757d;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+/* View Class button */
+.class-card-action {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.class-card-action .btn {
+    width: 100%;
+    text-align: center;
+}
+
+/* Login/Register Form Styles */
 .overlay {
     display: none;
     position: fixed;
@@ -78,275 +208,948 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
     z-index: 999;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+/* Error message styling */
+.alert-error, .alert-warning {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+    border-left: 5px solid #c62828;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 80%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-weight: 500;
+    animation: shake 0.5s;
+    position: relative;
+}
+
+.alert-info {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    border: 1px solid #bbdefb;
+    border-left: 5px solid #2196f3;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
 .login-register-form,
 .new-class-form {
     background: rgb(255, 255, 255);
-    padding: 20px;
-    border-radius: 10px;
+    padding: 25px;
+    border-radius: var(--border-radius);
     text-align: center;
     width: 30%;
+    min-width: 340px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.3s ease-out;
+    border-top: 3px solid var(--primary-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.to-blur {
-    filter: blur(0);
-}
-
-.login-container {
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
 .form-group {
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--dark-text);
+    text-align: left;
 }
 
-.form-group input {
+.form-group input, 
+.form-group textarea,
+.form-control {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    padding: 8px 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    transition: all var(--transition-speed) ease;
+    font-size: 15px;
+    border-left: 3px solid var(--primary-light);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15);
+    outline: none;
+}
+
+.form-group button,
+.btn {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    text-align: center;
+    min-width: 120px; /* Make buttons wider */
+}
+
+.form-group button:hover,
+.btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-group button {
-    width: 100%;
-    padding: 10px;
-    background-color: #6dc56a;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    margin: 8px auto;
+    display: block;
+    min-width: 140px;
 }
 
-.form-group button:hover {
-    background-color: #6dc56a;
-}
-
-.back-button {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.back-button a {
-    text-decoration: none;
-    color: #6dc56a;
-}
-
-#login-register-head,
-#new-class-form-head {
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.toggle-switch {
-    display: inline-block;
-    position: relative;
-    width: 60px;
-    height: 34px;
-}
-
-.toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.teacher-add-module{
-    background-color: #cfd9cf !important;
-    border: #000000;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    border-radius: 34px;
-    transition: 0.4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
-}
-
-input:checked + .slider {
-    background-color: #6dc56a;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-#view-classes-button{
-    display: flex; 
-    justify-content: center;
-}
-
-#index-button{
-    animation: slideUp 1s ease-in-out;
-}
-
-#index-alert {
-    text-align: center;
-    width: 50%;
-    margin: 16px auto;  
-    box-sizing: content-box;
+/* Classes page styling */
+.classes-header {
     display: flex;
-    justify-content: center;
     align-items: center;
-    animation: slideUp 1s ease-in-out;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.classes-header-content {
+    display: flex; 
+    justify-content: space-between; 
+    width: 80%; 
+    max-width: 1200px;
+}
+
+.classes-heading {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    font-size: 32px;
+    color: var(--dark-text);
 }
 
 .classes-add-button {
-    margin-left: auto;
-}
-
-.classes-header {
-    display: flex;
-    justify-content: space-between;
-    width: 97%;
-    margin: 0 auto;
-    padding: 10px;
-    margin-top: 2%;
-}
-
-.no-class-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    display: block;
-    margin: 15px auto;
-
-}
-
-.new-class-form {
-    background: rgb(255, 255, 255);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 50%;
-}
-
-#new-class-form-head {
-
-}
-
-.class-form-container,
-.student-form-container {
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.classes-header {
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.no-class-text {
-    font-family: 'Ubuntu', sans-serif;
+    min-width: 100px;
 }
 
 .class-cards {
-    margin: 50px;
+    padding: 0 20px;
 }
 
+/* Sidebar navigation for class view */
 .sidebar {
     position: fixed;
-    top: 137px;
-    bottom: 0;
+    top: 60px;
     left: 0;
-    width: 200px;
-    background-color: #6dc56a;
+    width: 180px;
+    height: calc(100vh - 60px);
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
     overflow-y: auto;
-    border-radius: 8px;
-    z-index: 1000;
-  }
-  
-  .sidebar-sticky {
-    padding-top: 20px;
-  }
-  
-  .nav-link.active {
-    font-family: 'Ubuntu', sans-serif;
-    background-color: #ffffff;
-    color: #000000;
-    border-radius: 8px;
-  }
+    padding-top: 15px;
+}
 
-  .new-mod-form {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
+.sidebar-sticky {
+    padding: 0 10px;
+}
 
-  .class-navbar {
-    color: #ffffff;
+.nav-item {
+    margin-bottom: 8px;
+}
+
+.nav-link {
+    display: block;
+    padding: 8px 12px;
+    color: var(--dark-text);
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-link:hover {
+    background-color: var(--primary-light);
+    color: white;
+}
+
+.nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.teacher-add-module {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* Main content area */
+main[role="main"] {
+    margin-left: 180px;
+    padding: 15px;
+    width: calc(100% - 180px);
+}
+
+/* Fix for the dashboard gaps */
+.view-class-head {
+    margin-bottom: 15px;
+    padding-top: 0;
+}
+
+#class-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* Teacher dashboard */
+.teacher-dashboard {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.teacher-dashboard .card-header {
+    background-color: #f8f9fa;
+    padding: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.teacher-dashboard .card-header h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.teacher-dashboard .card-body {
+    padding: 15px;
+}
+
+/* Quick actions - Layout fixes */
+.class-card-action {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.class-card-action .btn {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+/* Quick Actions buttons in dashboard */
+.quick-actions-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.action-button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    height: 80px;
+}
+
+.action-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Class homepage content */
+.class-homepage-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+}
+
+/* Add module page */
+.new-mod-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    max-width: 800px;
     margin-left: auto;
-  }
+    margin-right: auto;
+    margin-bottom: 40px;
+}
 
-  .new-student-form {
-    background: rgb(255, 255, 255);
+.new-mod-form .card {
+    width: 100%;
+    max-width: 100%;
+}
+
+.new-mod-form .markdown-tips {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+}
+
+.new-mod-form code {
+    display: block;
+    margin-bottom: 10px;
+    padding: 6px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+    color: #e83e8c;
+}
+
+/* Edit Homepage page - Fixed container sizing */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 0;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+    width: 100%;
+}
+
+.col-md-8, .col-md-4 {
+    position: relative;
+    padding-right: 10px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.col-md-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+/* Style for Edit Homepage Content */
+.card-header.bg-primary {
+    background-color: var(--primary-color) !important;
+    color: white;
+}
+
+.card-header.bg-info {
+    background-color: #17a2b8 !important;
+    color: white;
+}
+
+.card-header.bg-success {
+    background-color: #28a745 !important;
+    color: white;
+}
+
+.markdown-help {
+    font-size: 13px;
+}
+
+.list-group {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 8px 12px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+code {
+    padding: 2px 4px;
+    font-size: 85%;
+    color: #bd4147;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* Add Student page */
+.card {
+    margin-bottom: 15px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.input-group .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+}
+
+.input-group-append {
+    display: flex;
+    margin-left: -1px;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    background-color: transparent;
+    background-image: none;
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.d-inline {
+    display: inline !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+/* Page headers */
+h2 {
+    font-family: 'Ubuntu', sans-serif;
+    color: var(--dark-text);
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+/* Back buttons styling */
+.back-button, a.btn.btn-primary[href*="Back"] {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    margin-top: 8px;
+    text-align: center;
+    min-width: 100px;
+    border: none;
+}
+
+/* Custom styling for specific pages */
+/* Class page title area */
+.classtet {
+    margin-top: 0;
+    padding-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Fix for Quick Actions in dashboard */
+.quick-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 0;
+    width: 100%;
+}
+
+.add-module-btn,
+.manage-students-btn,
+.edit-homepage-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    height: 80px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.add-module-btn:hover,
+.manage-students-btn:hover,
+.edit-homepage-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    text-decoration: none;
+}
+
+/* Fix for class.html teacher buttons */
+#class-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Fix Add Module page */
+.classes-header {
+    margin-top: 0;
+    padding-top: 0;
+    width: 100%;
+}
+
+/* Fix Edit Homepage layout */
+.edit-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 0;
+    width: 100%;
+}
+
+.edit-left {
+    flex: 2;
+}
+
+.edit-right {
+    flex: 1;
+}
+
+.edit-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.edit-card-header {
+    padding: 12px 15px;
+    font-weight: 600;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.edit-card-body {
+    padding: 15px;
+}
+
+/* Specific styling for teacher dashboard - Fixed layout */
+.teacher-dashboard .row {
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    width: 100%;
+}
+
+.teacher-dashboard .col-md-4,
+.teacher-dashboard .col-md-8 {
+    padding: 0;
+}
+
+.teacher-dashboard .card {
+    height: 100%;
+    margin-bottom: 0;
+    max-width: none;
+}
+
+/* Fixed Quick Actions in dashboard */
+.row .col-md-4 {
+    padding: 0 5px;
+}
+
+.class-information {
+    margin-bottom: 0;
+}
+
+.class-information p {
+    margin-bottom: 8px;
+}
+
+.class-information p:last-child {
+    margin-bottom: 0;
+}
+
+/* Fix inner navbar in class view */
+#inner-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 0 15px 0;
+}
+
+.view-class-head h2 {
+    margin: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .card {
+        max-width: 300px;
+    }
+    
+    .sidebar {
+        width: 180px;
+    }
+    
+    main[role="main"] {
+        margin-left: 180px;
+        width: calc(100% - 180px);
+    }
+}
+
+@media (max-width: 992px) {
+    .col-md-8, .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .login-register-form,
+    .new-class-form {
+        width: 80%;
+    }
+    
+    .sidebar {
+        width: 160px;
+    }
+    
+    main[role="main"] {
+        margin-left: 160px;
+        width: calc(100% - 160px);
+    }
+    
+    .edit-container {
+        flex-direction: column;
+    }
+    
+    .teacher-dashboard .row {
+        flex-direction: column;
+    }
+    
+    /* Fix Quick Actions on tablet */
+    .row .col-md-4 {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        margin-bottom: 15px;
+    }
+    
+    main[role="main"] {
+        margin-left: 0;
+        padding: 10px;
+        width: 100%;
+    }
+    
+    .classes-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .classes-add-button {
+        margin-top: 8px;
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+    
+    #class-buttons {
+        flex-direction: column;
+    }
+    
+    .class-card-action {
+        flex-direction: column;
+    }
+    
+    .class-card-action .btn {
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+    
+    .quick-actions {
+        flex-direction: column;
+    }
+    
+    .add-module-btn,
+    .manage-students-btn,
+    .edit-homepage-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    #welcome-title {
+        font-size: 28px;
+    }
+    
+    #welcome-subhead {
+        font-size: 16px;
+    }
+    
+    /* Fix inner navbar on mobile */
+    #inner-navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    #class-buttons {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-navbar {
+        height: auto;
+        padding: 8px;
+    }
+    
+    .login-logout-buttons {
+        flex-direction: column;
+    }
+    
+    .login-logout-buttons .btn {
+        width: 100% !important;
+    }
+    
+    .card {
+        max-width: 100%;
+    }
+}
+
+/* Consistent button styling */
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* Fix for navbar buttons */
+.login-logout-buttons .btn {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.login-logout-buttons .btn:hover {
+    background-color: var(--light-text);
+    color: var(--primary-color);
+}
+
+/* Fix for teacher dashboard - Quick Actions */
+.teacher-dashboard .row .col-md-4,
+.teacher-dashboard .row .col-md-8 {
+    width: auto;
+}
+
+.teacher-dashboard .row .col-md-4 {
+    flex: 0 0 30%;
+}
+
+.teacher-dashboard .row .col-md-8 {
+    flex: 0 0 65%;
+}
+
+/* Fix Quick Actions buttons to be same size */
+.teacher-dashboard .class-card-action .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+}
+
+.teacher-dashboard .class-card-action .row .col-md-4 {
+    flex: 0 0 calc(33.33% - 10px);
+    padding: 0 5px;
+    margin-bottom: 10px;
+}
+
+.teacher-dashboard .class-card-action .btn {
+    width: 100%;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 25vh;
-  }
-
-  .student-form-container {
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    padding: 20px;
-    text-align: center;;
-
-  }
-
-  .add-student-button,
-  .edit-home-button {
-    display: flex; 
-    justify-content: flex-end;
-  }
-
-  .add-student-container {
-    height: 150px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-
-  #inner-navbar {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 10px;
-  }
-
-  .add-student-button {
-
-  }
-
-  #class-buttons {
-    display: flex;
-    justify-content: flex-end;
+    margin: 0;
 }
 
-#class-buttons a {
-    margin-right: 5px; /* Adjust the margin-right value for spacing */
+/* Fix edit homepage layout */
+.container .row {
+    margin: 0;
+    width: 100%;
+}
+
+/* Fix extra padding in body */
+body > div {
+    padding-top: 0 !important;
+}
+
+/* Fix for excessive margins and paddings */
+.container-fluid {
+    padding: 0;
+}
+
+.container-fluid main {
+    padding-top: 0;
+}
+
+/* Fix for classtet spacing */
+.classtet h2 {
+    margin: 0;
+}
+
+/* Fix for login form */
+.login-register-form form {
+    margin: 0;
+}
+
+/* Fix for Add Module button in sidebar */
+.teacher-add-module {
+    margin-top: 0;
+}
+
+/* Fix for students and modules pages */
+.classtet-add-student,
+.classtet-edit-homepage {
+    margin-top: 0;
+    padding-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }

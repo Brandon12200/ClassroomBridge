@@ -70,6 +70,28 @@ function showNewClassForm() {
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('registerForm').style.display = 'none';
     document.getElementById('to-blur').style.filter = 'blur(5px)';
+    
+    // Setup image preview for class picture
+    const fileInput = document.getElementById('class_picture');
+    if (fileInput) {
+        fileInput.addEventListener('change', function() {
+            const previewContainer = document.getElementById('image-preview-container');
+            const preview = document.getElementById('image-preview');
+            
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        });
+    }
 }
 
 /**

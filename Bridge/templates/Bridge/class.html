@@ -38,20 +38,72 @@
                 <h2 style="font-family: 'Ubuntu', sans-serif;">{{ course.class_name }}</h2>
             </div>
             <div id="class-buttons" class="ml-auto">
-                <a class="btn btn-primary classes-add-button" href="{% url 'student_form' course.id %}">Add Student</a>
+                <a class="btn btn-primary classes-add-button" href="{% url 'student_form' course.id %}">Manage Students</a>
                 <a class="btn btn-primary home-edit-button" href="{% url 'edit_class_homepage' course.id %}">Edit Homepage</a>
             </div>
         </nav>
+        
+        <!-- Teacher Dashboard -->
+        <div class="teacher-dashboard card mb-4">
+            <div class="card-header">
+                <h4>Teacher Dashboard</h4>
+            </div>
+            <div class="card-body">
+                <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px; width: 100%; margin: 0;">
+                    <div class="col-md-3" style="flex: 0 0 30%; min-width: 280px;">
+                        <div class="card mb-3" style="height: 100%;">
+                            <div class="card-header">Class Information</div>
+                            <div class="card-body">
+                                <p><strong>Location:</strong> {{ course.location }}</p>
+                                <p><strong>Students:</strong> {{ student_count }}</p>
+                                <p><strong>Modules:</strong> {{ modules|length }}</p>
+                                <p><strong>Created:</strong> {{ course.created_at|date:"F j, Y" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8" style="flex: 1; min-width: 280px;">
+                        <div class="card" style="height: 100%;">
+                            <div class="card-header">Quick Actions</div>
+                            <div class="card-body">
+                                <div class="class-card-action">
+                                    <div class="row" style="display: flex; flex-wrap: wrap; gap: 15px; width: 100%; margin: 0; justify-content: center;">
+                                        <div class="col-md-4" style="flex: 0 0 auto; min-width: 180px; padding: 0;">
+                                            <a href="{% url 'add_module' course.id %}" class="btn btn-success btn-block mb-2" style="width: 100%; min-width: 160px;">Add Module</a>
+                                        </div>
+                                        <div class="col-md-4" style="flex: 0 0 auto; min-width: 180px; padding: 0;">
+                                            <a href="{% url 'student_form' course.id %}" class="btn btn-info btn-block mb-2" style="width: 100%; min-width: 160px;">Manage Students</a>
+                                        </div>
+                                        <div class="col-md-4" style="flex: 0 0 auto; min-width: 180px; padding: 0;">
+                                            <a href="{% url 'edit_class_homepage' course.id %}" class="btn btn-warning btn-block mb-2" style="width: 100%; min-width: 160px;">Edit Homepage</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mt-3 text-muted">Use the sidebar to navigate between modules or access the quick actions above.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% else %}
         <nav class="navbar navbar-expand-lg" style="margin-top: 34px;" id="inner-navbar">
             <div class="view-class-head">
                 <h2 style="font-family: 'Ubuntu', sans-serif; margin-right: 20px;">{{ course.class_name }}</h2>
             </div>
+            <div class="ml-auto">
+                <span class="badge badge-secondary">Teacher: {{ course.teacher.username }}</span>
+                <span class="badge badge-info">Location: {{ course.location }}</span>
+                <span class="badge badge-primary">Modules: {{ modules|length }}</span>
+            </div>
         </nav>
         {% endif %}
-        {% if content %}
-            {{ content|safe }}
-        {% endif %}
+        
+        <!-- Class Homepage Content -->
+        <div class="class-homepage-content">
+            {% if content %}
+                {{ content|safe }}
+            {% endif %}
+        </div>
     </main>
 </div>
 

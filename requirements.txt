@@ -3,3 +3,4 @@ markdown2>=2.4.0
 python-dotenv>=1.0.0
 whitenoise>=6.4.0
 pillow>=9.5.0
+coverage>=7.3.0

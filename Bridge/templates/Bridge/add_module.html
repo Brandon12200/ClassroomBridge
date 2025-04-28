@@ -3,11 +3,17 @@
 
 {% block body %}
 <div class="classes-header">
-    <h2 class="classes-heading" style="display: inline-block; font-family: 'Ubuntu', sans-serif;">{{ class.class_name }} - Add Module</h2>
-    <a class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" href="{% url 'view_class' class.id %}">Back</a>
+    <div class="classes-header-content">
+        <h2 class="classes-heading" style="display: inline-block; font-family: 'Ubuntu', sans-serif;">{{ class.class_name }} - Add Module</h2>
+        <a class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" href="{% url 'view_class' class.id %}">Back</a>
+    </div>
 </div>
 
 <div class="new-mod-form">
+    {% if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    
     <form method="post" action="{% url 'add_module' class.id %}">
         {% csrf_token %}
         
@@ -18,15 +24,41 @@
 
         <div class="form-group">
             <label for="description">Module Description:</label>
-            <textarea class="form-control" name="description" required></textarea>
+            <textarea class="form-control" name="description" required placeholder="Supports Markdown"></textarea>
         </div>
 
         <div class="form-group">
             <label for="content">Module Content:</label>
-            <textarea class="form-control" name="content" required placeholder="Markdown Content" required rows="9"></textarea>
+            <textarea class="form-control" name="content" required placeholder="Supports Markdown" rows="9"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="order">Module Order:</label>
+            <input type="number" class="form-control" name="order" value="{{ next_order|default:0 }}" min="0">
+            <small class="form-text text-muted">Modules are displayed in ascending order (0, 1, 2, ...)</small>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label>Markdown Tips:</label>
+            <div class="card p-3 markdown-tips">
+                <div class="row">
+                    <div class="col-md-6">
+                        <code># Heading 1</code>
+                        <code>## Heading 2</code>
+                        <code>*italic* or _italic_</code>
+                        <code>**bold** or __bold__</code>
+                    </div>
+                    <div class="col-md-6">
+                        <code>[Link](http://example.com)</code>
+                        <code>![Image](http://example.com/image.jpg)</code>
+                        <code>* Unordered list item</code>
+                        <code>1. Ordered list item</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Module</button>
     </form>
 </div>
 

@@ -3,21 +3,81 @@
 
 {% block body %}
 <div class="classes-header">
-    <h2 class="classes-heading" style="display: inline-block; font-family: 'Ubuntu', sans-serif;">{{ course.class_name }} - Edit Homepage</h2>
-    <a class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" href="{% url 'view_class' course.id %}">Back</a>
+    <div class="classes-header-content">
+        <h2 class="classes-heading" style="display: inline-block; font-family: 'Ubuntu', sans-serif;">{{ course.class_name }} - Edit Homepage</h2>
+        <a class="btn btn-primary classes-add-button" style="width: 100px; margin: 10px;" href="{% url 'view_class' course.id %}">Back</a>
+    </div>
 </div>
 
-<div class="new-mod-form">
-    <form method="post" action="{% url 'edit_class_homepage' course.id %}">
-        {% csrf_token %}
-        
-        <div class="form-group">
-            <label for="content">Homepage Content:</label>
-            <textarea class="form-control" name="home-content" rows="13">{{ course.home_content }}</textarea>
+<div class="container" style="display: flex; justify-content: center; margin-bottom: 40px;">
+    <div style="width: 90%; max-width: 1200px;">
+        <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+            <div class="col-md-7" style="min-width: 400px; margin-bottom: 20px;">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Edit Homepage Content</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'edit_class_homepage' course.id %}">
+                            {% csrf_token %}
+                            
+                            <div class="form-group">
+                                <label for="home-content">Homepage Content:</label>
+                                <textarea class="form-control" id="home-content" name="home-content" rows="15">{{ course.home_content }}</textarea>
+                                <small class="form-text text-muted">This content supports Markdown formatting.</small>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" style="min-width: 340px; margin-bottom: 20px;">
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header bg-info text-white">
+                        <h4>Markdown Tips</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="markdown-help">
+                            <h5>Basic Formatting</h5>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item"><code># Heading 1</code></li>
+                                <li class="list-group-item"><code>## Heading 2</code></li>
+                                <li class="list-group-item"><code>*italic* or _italic_</code></li>
+                                <li class="list-group-item"><code>**bold** or __bold__</code></li>
+                            </ul>
+                            
+                            <h5>Lists</h5>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item"><code>* Unordered list item</code></li>
+                                <li class="list-group-item"><code>1. Ordered list item</code></li>
+                            </ul>
+                            
+                            <h5>Links and Images</h5>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item"><code>[Link Text](http://example.com)</code></li>
+                                <li class="list-group-item"><code>![Image Alt](http://example.com/image.jpg)</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h4>Preview</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>The content will be rendered with Markdown formatting when saved.</p>
+                        <p>Current content preview:</p>
+                        <div class="border p-3 bg-light">
+                            {{ content|safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
 </div>
 
 {% endblock %}

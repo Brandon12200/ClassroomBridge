@@ -1,7 +1,7 @@
 import json
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.db import IntegrityError
+from django.db import IntegrityError, models
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse, HttpResponseRedirect, render, get_object_or_404
@@ -73,9 +73,20 @@ def register_view(request):
             user.save()
         except IntegrityError as e:
             print(e)
-            return render(request, "Bridge/index.html", {
-                "message": "Email address already taken."
-            })
+            # Check if username already exists
+            if User.objects.filter(username=username).exists():
+                return render(request, "Bridge/index.html", {
+                    "message": "Username already taken."
+                })
+            # Check if email already exists
+            elif User.objects.filter(email=email).exists():
+                return render(request, "Bridge/index.html", {
+                    "message": "Email address already taken."
+                })
+            else:
+                return render(request, "Bridge/index.html", {
+                    "message": "Registration failed. Please try again with different credentials."
+                })
         login(request, user)
         return HttpResponseRedirect(reverse("classes"))
     else:
@@ -151,21 +162,23 @@ def new_class(request):
         HttpResponse: The HTTP response containing the rendered template.
     """
     if request.method == "POST":
-        form = NewClassForm(request.POST)
+        form = NewClassForm(request.POST, request.FILES)
         if form.is_valid():
             name = form.cleaned_data["class_name"]
             location = form.cleaned_data["location"]
-            image = form.cleaned_data["backgroundImage"]  # Match template field name
+            image = form.cleaned_data.get("class_picture")  # Get the uploaded image file
             teacher = request.user
 
             new_class = Course.objects.create(
                 class_name=name,
                 location=location,
-                class_picture=image,
                 teacher=teacher,
             )
-
-            new_class.save()
+            
+            # Handle the image file if it exists
+            if image:
+                new_class.class_picture = image
+                new_class.save()
 
             return HttpResponseRedirect(reverse("classes"))
         else:
@@ -190,7 +203,7 @@ def view_class(request, class_id):
         HttpResponse: The HTTP response containing the rendered template.
     """
     course_instance = get_object_or_404(Course, id=class_id)
-    modules = course_instance.modules.all()
+    modules = course_instance.modules.all().order_by('order', 'created_at')
 
     # Check if user is the teacher or a student in this class
     is_teacher = request.user == course_instance.teacher
@@ -205,12 +218,16 @@ def view_class(request, class_id):
     else:
         content = "No content available"
 
+    # Count students for display
+    student_count = course_instance.students.count()
+
     return render(request, "Bridge/class.html", {
         'class_id': class_id,
         'course': course_instance,
         'modules': modules,
         'content': content,
-        'is_teacher': is_teacher
+        'is_teacher': is_teacher,
+        'student_count': student_count
     })
 
 
@@ -290,9 +307,21 @@ def add_module(request, class_id):
         title = request.POST.get('title')
         description = request.POST.get('description')
         content = request.POST.get('content')
+        order = request.POST.get('order', 0)
+        
+        try:
+            order = int(order)
+        except ValueError:
+            order = 0
         
         if title and description and content:
-            new_module = Module.objects.create(title=title, description=description, content=content)
+            # Create new module with order
+            new_module = Module.objects.create(
+                title=title, 
+                description=description, 
+                content=content,
+                order=order
+            )
             course_instance.modules.add(new_module)
             course_instance.save()
 
@@ -303,8 +332,13 @@ def add_module(request, class_id):
                 "message": "All fields are required."
             })
 
+    # Get the highest order number from existing modules to suggest the next
+    latest_order = course_instance.modules.aggregate(models.Max('order'))['order__max'] or 0
+    next_order = latest_order + 1
+
     return render(request, 'Bridge/add_module.html', {
-        "class": course_instance
+        "class": course_instance,
+        "next_order": next_order
     })
 
 
@@ -391,6 +425,7 @@ def add_student(request, class_id):
 def student_form(request, class_id):
     """
     Renders the add_student.html template for a specific class.
+    Allows searching for students by username or email.
 
     Args:
         request (HttpRequest): The HTTP request object.
@@ -404,12 +439,68 @@ def student_form(request, class_id):
     # Only the teacher can see this form
     if request.user != course_instance.teacher:
         return HttpResponseRedirect(reverse("view_class", args=[class_id]))
+    
+    # Get current students for display
+    current_students = course_instance.students.all().order_by('username')
+    
+    # Handle search functionality
+    search_term = request.GET.get('search', '')
+    search_results = []
+    
+    if search_term:
+        # Search for users by username or email, excluding the teacher and current students
+        search_results = User.objects.filter(
+            Q(username__icontains=search_term) | Q(email__icontains=search_term)
+        ).exclude(
+            Q(id=request.user.id) | Q(id__in=current_students.values_list('id', flat=True))
+        ).exclude(
+            is_staff=True
+        ).order_by('username')[:10]  # Limit to 10 results for performance
         
     return render(request, 'Bridge/add_student.html', {
         "course": course_instance,
-        "class": course_instance
+        "class": course_instance,
+        "current_students": current_students,
+        "search_term": search_term,
+        "search_results": search_results
     })
 
+
+@csrf_exempt
+@login_required
+def remove_student(request, class_id, student_id):
+    """
+    Removes a student from a class.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        class_id (int): The ID of the class.
+        student_id (int): The ID of the student to remove.
+
+    Returns:
+        HttpResponse: Redirect to the student form page.
+    """
+    course_instance = get_object_or_404(Course, id=class_id)
+    
+    # Only the teacher can remove students
+    if request.user != course_instance.teacher:
+        return HttpResponseRedirect(reverse("view_class", args=[class_id]))
+    
+    try:
+        student = User.objects.get(id=student_id)
+        if student in course_instance.students.all():
+            course_instance.students.remove(student)
+            return HttpResponseRedirect(reverse("student_form", args=[class_id]))
+        else:
+            return render(request, 'Bridge/add_student.html', {
+                "class": course_instance,
+                "message": f"Student is not enrolled in this class."
+            })
+    except User.DoesNotExist:
+        return render(request, 'Bridge/add_student.html', {
+            "class": course_instance,
+            "message": f"Student with ID {student_id} does not exist."
+        })
 
 @csrf_exempt
 @login_required
@@ -430,7 +521,9 @@ def edit_class_homepage(request, class_id):
     if request.user != course_instance.teacher:
         return HttpResponseRedirect(reverse("view_class", args=[class_id]))
         
-    modules = course_instance.modules.all()
+    modules = course_instance.modules.all().order_by('order', 'created_at')
+    # Count students for display in redirect
+    student_count = course_instance.students.count()
 
     if request.method == 'POST':
         # Use the field name from the template
@@ -438,17 +531,8 @@ def edit_class_homepage(request, class_id):
         course_instance.home_content = home_content
         course_instance.save()
 
-        if course_instance.home_content is not None:
-            markdown = Markdown()
-            content = markdown.convert(course_instance.home_content)
-        else:
-            content = "No content available"
-
-        return render(request, 'Bridge/class.html', {
-            "course": course_instance,
-            "content": content,
-            "modules": modules
-        })
+        # Redirect to view_class instead of rendering the template directly
+        return HttpResponseRedirect(reverse("view_class", args=[class_id]))
 
     if course_instance.home_content is not None:
         markdown = Markdown()

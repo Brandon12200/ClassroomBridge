@@ -35,22 +35,26 @@ class NewClassForm(forms.Form):
     """
     Form for creating a new class.
     
-    Includes fields for class name, location, and background image URL.
+    Includes fields for class name, location, and background image upload.
     """
     class_name = forms.CharField(max_length=100, required=True)
     location = forms.CharField(max_length=100, required=True)
-    backgroundImage = forms.URLField(max_length=200000, required=False)  # Match template field name
+    class_picture = forms.ImageField(required=False)  # Changed to ImageField for file uploads
 
 
 class AddModuleForm(forms.Form):
     """
     Form for adding a new module to a class.
     
-    Includes fields for title, description, and content.
+    Includes fields for title, description, content, and order.
     """
     title = forms.CharField(max_length=100, required=True)
-    description = forms.CharField(widget=forms.Textarea, required=True)
-    content = forms.CharField(widget=forms.Textarea, required=True)
+    description = forms.CharField(widget=forms.Textarea, required=True, 
+                                help_text="Supports Markdown formatting")
+    content = forms.CharField(widget=forms.Textarea, required=True, 
+                            help_text="Supports Markdown formatting")
+    order = forms.IntegerField(initial=0, required=False, 
+                            help_text="Modules are displayed in ascending order")
 
 
 class AddStudentForm(forms.Form):
