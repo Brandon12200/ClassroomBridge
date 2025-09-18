@@ -27,7 +27,7 @@ A comprehensive Learning Management System built with Django that streamlines on
 ### Requirements
 
 - Python 3.8+
-- Django 3.2+
+- Django 4.2+
 - markdown2 library
 - Modern web browser (Chrome, Firefox, Safari, Edge)
 
@@ -100,40 +100,6 @@ User (Teacher) 1──────*─┐
 - **Content Access**: Navigate through structured learning materials
 - **Responsive Experience**: Access course content from any device with a consistent experience
 
-## Content Creation with Markdown
-
-ClassroomBridge empowers educators with Markdown for rich content creation:
-
-```markdown
-# Module Title
-
-## Learning Objectives
-- Understand key concepts
-- Apply knowledge to problems
-- Analyze results effectively
-
-## Main Content
-
-This is a paragraph with **bold text** and *italic text*.
-
-> **Important Note:** This highlights critical information for students.
-
-### Code Example
-```python
-def calculate_average(numbers):
-    """Calculate the average of a list of numbers."""
-    return sum(numbers) / len(numbers)
-```
-
-### Table of Information
-
-| Concept | Definition | Example |
-|---------|------------|---------|
-| Variable | A storage location | x = 5 |
-| Function | A reusable block of code | def greet(): |
-| Loop | Repeated execution | for i in range(10): |
-
-
 ## Security
 
 The application implements several security measures:
@@ -145,8 +111,6 @@ The application implements several security measures:
 - Template escaping to prevent XSS attacks
 
 ## Testing
-
-The application includes a comprehensive test suite:
 
 ```bash
 # Run all tests
