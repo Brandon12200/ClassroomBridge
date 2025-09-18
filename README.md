@@ -144,16 +144,6 @@ The application implements several security measures:
 - Form validation to prevent malicious data entry
 - Template escaping to prevent XSS attacks
 
-## Development Roadmap
-
-Future enhancements planned for ClassroomBridge:
-
-- **Assignment Submission**: Enable students to submit work directly within the platform
-- **Grading System**: Integrated tools for assessment and feedback
-- **Discussion Forums**: Collaborative spaces for student interaction
-- **Notification System**: Real-time alerts for important class updates
-- **Analytics Dashboard**: Insights into student engagement and performance
-
 ## Testing
 
 The application includes a comprehensive test suite:
